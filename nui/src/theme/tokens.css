@@ -1,0 +1,34 @@
+:root {
+  /* Background */
+  --helix-bg-base: #0d0d1a;
+  --helix-bg-primary: #1a1a2e;
+  --helix-bg-secondary: #16213e;
+  --helix-bg-tertiary: #1e2a4a;
+  --helix-bg-hover: #243352;
+
+  /* Accent */
+  --helix-accent: #0f7fff;
+  --helix-accent-hover: #3399ff;
+  --helix-accent-muted: #0f7fff22;
+
+  /* Warm */
+  --helix-warm: #ff9f1c;
+  --helix-warm-hover: #ffb347;
+
+  /* Text */
+  --helix-text-primary: #e8e8ec;
+  --helix-text-secondary: #94a3b8;
+  --helix-text-muted: #64748b;
+  --helix-text-inverse: #0d0d1a;
+
+  /* Status */
+  --helix-success: #00c853;
+  --helix-warning: #ffd600;
+  --helix-error: #ff1744;
+  --helix-info: #0f7fff;
+
+  /* Border */
+  --helix-border: #2a2a4a;
+  --helix-border-hover: #3a3a5a;
+  --helix-border-focus: #0f7fff;
+}

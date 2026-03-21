@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "version": "Lua 5.4",
+    "nonstandardSymbol": ["/**/", "---@"]
+  },
+  "diagnostics": {
+    "globals": [
+      "GetCurrentResourceName",
+      "GetResourceState",
+      "LoadResourceFile",
+      "RegisterNetEvent",
+      "AddEventHandler",
+      "TriggerEvent",
+      "TriggerServerEvent",
+      "TriggerClientEvent",
+      "RegisterServerEvent",
+      "RegisterCommand",
+      "RegisterNUICallback",
+      "SendNUIMessage",
+      "SetNuiFocus",
+      "exports",
+      "Citizen",
+      "CreateThread",
+      "Wait",
+      "PlayerPedId",
+      "PlayerId",
+      "GetPlayerPed",
+      "GetPlayerServerId",
+      "GetActivePlayers",
+      "GetEntityCoords",
+      "GetPlayers",
+      "IsDuplicityVersion",
+      "PerformHttpRequest",
+      "GetPlayerIdentifiers",
+      "IsPlayerAceAllowed",
+      "json",
+      "promise",
+      "joaat",
+      "vec3",
+      "vec4",
+      "vector3",
+      "vector4",
+      "quat",
+      "source",
+      "lib",
+      "World3dToScreen2d",
+      "SetTextScale",
+      "SetTextFont",
+      "SetTextProportional",
+      "SetTextColour",
+      "SetTextOutline",
+      "SetTextEntry",
+      "SetTextCentre",
+      "AddTextComponentString",
+      "DrawText",
+      "GetStreetNameAtCoord",
+      "GetStreetNameFromHashKey",
+      "IsPedInAnyVehicle",
+      "GetVehiclePedIsIn",
+      "HasAnimDictLoaded",
+      "RequestAnimDict",
+      "HasModelLoaded",
+      "RequestModel",
+      "HasStreamedTextureDictLoaded",
+      "RequestStreamedTextureDict",
+      "GetGameTimer"
+    ],
+    "severity": {
+      "lowercase-global": "Warning"
+    }
+  },
+  "workspace": {
+    "checkThirdParty": false,
+    "library": []
+  },
+  "type": {
+    "castNumberToInteger": true
+  }
+}
