@@ -1,4 +1,4 @@
-local Constants = require 'shared.constants'
+local Constants = require('shared.constants')
 
 ---@class HelixBridge
 ---@field framework string Detected framework name
@@ -71,11 +71,11 @@ function Bridge.init()
     local bridgeModule = nil
 
     if detectedFramework == Constants.Framework.QBOX then
-        bridgeModule = require 'shared.bridge.qbox'
+        bridgeModule = require('shared.bridge.qbox')
     elseif detectedFramework == Constants.Framework.QBCORE then
-        bridgeModule = require 'shared.bridge.qbcore'
+        bridgeModule = require('shared.bridge.qbcore')
     elseif detectedFramework == Constants.Framework.ESX then
-        bridgeModule = require 'shared.bridge.esx'
+        bridgeModule = require('shared.bridge.esx')
     end
 
     if bridgeModule then

@@ -1,7 +1,7 @@
 --- Version checker — checks GitHub releases API on resource start
 --- Prints an update notice if a newer version is available.
 
-local Constants = require 'shared.constants'
+local Constants = require('shared.constants')
 
 local function checkVersion()
     local currentVersion = Constants.VERSION
@@ -26,7 +26,12 @@ local function checkVersion()
             if latestVersion == currentVersion then
                 print(('[helix_lib] ^2You are running the latest version (v%s)^0'):format(currentVersion))
             else
-                print(('[helix_lib] ^3Update available! Current: v%s — Latest: v%s^0'):format(currentVersion, latestVersion))
+                print(
+                    ('[helix_lib] ^3Update available! Current: v%s — Latest: v%s^0'):format(
+                        currentVersion,
+                        latestVersion
+                    )
+                )
                 print(('[helix_lib] ^3Download: https://github.com/%s/releases/latest^0'):format(repo))
             end
         end,
@@ -39,7 +44,7 @@ end
 -- Check version on resource start (if enabled in config)
 CreateThread(function()
     Wait(5000) -- Wait for other resources to initialize
-    local Config = require 'shared.config'
+    local Config = require('shared.config')
     local config = Config.get(Constants.RESOURCE_NAME)
 
     if config and config.versionCheck ~= false then

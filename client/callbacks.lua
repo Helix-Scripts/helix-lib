@@ -2,7 +2,7 @@
 --- Provides a simple RPC-style callback between client and server.
 --- Falls back gracefully if ox_lib is present (defers to its system).
 
-local Constants = require 'shared.constants'
+local Constants = require('shared.constants')
 
 ---@class HelixCallback
 local Callback = {}

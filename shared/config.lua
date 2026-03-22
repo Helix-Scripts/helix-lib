@@ -1,4 +1,4 @@
-local Constants = require 'shared.constants'
+local Constants = require('shared.constants')
 
 ---@class HelixConfig
 local Config = {}

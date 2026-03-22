@@ -1,10 +1,10 @@
 --- helix_lib server entry point
 --- Initializes server-side modules and exposes the public API.
 
-local Config = require 'shared.config'
-local Bridge = require 'shared.bridge.init'
-local Locale = require 'shared.locale'
-local Constants = require 'shared.constants'
+local Config = require('shared.config')
+local Bridge = require('shared.bridge.init')
+local Locale = require('shared.locale')
+local Constants = require('shared.constants')
 
 --- Load config
 local config = Config.load(Constants.RESOURCE_NAME)
@@ -63,8 +63,4 @@ print(([[
     ║         Locale: %-21s║
     ╚═══════════════════════════════════════╝^0
 
-]]):format(
-    Constants.VERSION,
-    Bridge.framework,
-    localeLang
-))
+]]):format(Constants.VERSION, Bridge.framework, localeLang))

@@ -19,10 +19,14 @@ end
 ---@param source number
 ---@return HelixPlayer?
 function QBCore.GetPlayer(source)
-    if not IsDuplicityVersion() then return nil end
+    if not IsDuplicityVersion() then
+        return nil
+    end
 
     local player = getQB().Functions.GetPlayer(source)
-    if not player then return nil end
+    if not player then
+        return nil
+    end
 
     return {
         source = source,
@@ -53,10 +57,14 @@ end
 ---@param moneyType? string
 ---@return number
 function QBCore.GetPlayerMoney(source, moneyType)
-    if not IsDuplicityVersion() then return 0 end
+    if not IsDuplicityVersion() then
+        return 0
+    end
 
     local player = getQB().Functions.GetPlayer(source)
-    if not player then return 0 end
+    if not player then
+        return 0
+    end
 
     moneyType = moneyType or 'cash'
     return player.PlayerData.money[moneyType] or 0
@@ -65,10 +73,14 @@ end
 ---@param source number
 ---@return HelixJob?
 function QBCore.GetPlayerJob(source)
-    if not IsDuplicityVersion() then return nil end
+    if not IsDuplicityVersion() then
+        return nil
+    end
 
     local player = getQB().Functions.GetPlayer(source)
-    if not player then return nil end
+    if not player then
+        return nil
+    end
 
     return {
         name = player.PlayerData.job.name,
@@ -82,10 +94,14 @@ end
 ---@param source number
 ---@return string?
 function QBCore.GetPlayerIdentifier(source)
-    if not IsDuplicityVersion() then return nil end
+    if not IsDuplicityVersion() then
+        return nil
+    end
 
     local player = getQB().Functions.GetPlayer(source)
-    if not player then return nil end
+    if not player then
+        return nil
+    end
 
     return player.PlayerData.citizenid
 end
@@ -95,10 +111,14 @@ end
 ---@param moneyType? string
 ---@return boolean
 function QBCore.AddMoney(source, amount, moneyType)
-    if not IsDuplicityVersion() then return false end
+    if not IsDuplicityVersion() then
+        return false
+    end
 
     local player = getQB().Functions.GetPlayer(source)
-    if not player then return false end
+    if not player then
+        return false
+    end
 
     moneyType = moneyType or 'cash'
     return player.Functions.AddMoney(moneyType, amount, 'helix_lib')
@@ -109,10 +129,14 @@ end
 ---@param moneyType? string
 ---@return boolean
 function QBCore.RemoveMoney(source, amount, moneyType)
-    if not IsDuplicityVersion() then return false end
+    if not IsDuplicityVersion() then
+        return false
+    end
 
     local player = getQB().Functions.GetPlayer(source)
-    if not player then return false end
+    if not player then
+        return false
+    end
 
     moneyType = moneyType or 'cash'
     return player.Functions.RemoveMoney(moneyType, amount, 'helix_lib')
@@ -123,21 +147,29 @@ end
 ---@param count? number
 ---@return boolean
 function QBCore.HasItem(source, item, count)
-    if not IsDuplicityVersion() then return false end
+    if not IsDuplicityVersion() then
+        return false
+    end
 
     count = count or 1
 
     if GetResourceState('ox_inventory') == 'started' then
         local itemData = exports.ox_inventory:GetItem(source, item, nil, false)
-        if not itemData then return false end
+        if not itemData then
+            return false
+        end
         return (itemData.count or 0) >= count
     end
 
     local player = getQB().Functions.GetPlayer(source)
-    if not player then return false end
+    if not player then
+        return false
+    end
 
     local itemData = player.Functions.GetItemByName(item)
-    if not itemData then return false end
+    if not itemData then
+        return false
+    end
     return (itemData.amount or 0) >= count
 end
 

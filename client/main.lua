@@ -1,10 +1,10 @@
 --- helix_lib client entry point
 --- Initializes client-side modules and exposes the public API.
 
-local Config = require 'shared.config'
-local Bridge = require 'shared.bridge.init'
-local Locale = require 'shared.locale'
-local Constants = require 'shared.constants'
+local Config = require('shared.config')
+local Bridge = require('shared.bridge.init')
+local Locale = require('shared.locale')
+local Constants = require('shared.constants')
 
 --- Load config
 local config = Config.load(Constants.RESOURCE_NAME)
@@ -49,8 +49,5 @@ end)
 
 --- Debug logging
 if config.debug then
-    print(('[helix_lib] ^2Client initialized — framework: %s, locale: %s^0'):format(
-        Bridge.framework,
-        localeLang
-    ))
+    print(('[helix_lib] ^2Client initialized — framework: %s, locale: %s^0'):format(Bridge.framework, localeLang))
 end

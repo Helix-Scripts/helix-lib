@@ -21,8 +21,12 @@ end
 ---@param hasCursor? boolean Default: true
 ---@param hasKeyboard? boolean Default: true
 function UI.focus(hasCursor, hasKeyboard)
-    if hasCursor == nil then hasCursor = true end
-    if hasKeyboard == nil then hasKeyboard = true end
+    if hasCursor == nil then
+        hasCursor = true
+    end
+    if hasKeyboard == nil then
+        hasKeyboard = true
+    end
 
     SetNuiFocus(true, hasCursor)
     isNuiOpen = true

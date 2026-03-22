@@ -17,10 +17,14 @@ end
 ---@param source number
 ---@return HelixPlayer?
 function ESX.GetPlayer(source)
-    if not IsDuplicityVersion() then return nil end
+    if not IsDuplicityVersion() then
+        return nil
+    end
 
     local xPlayer = getESX().GetPlayerFromId(source)
-    if not xPlayer then return nil end
+    if not xPlayer then
+        return nil
+    end
 
     return {
         source = source,
@@ -46,10 +50,14 @@ end
 ---@param moneyType? string
 ---@return number
 function ESX.GetPlayerMoney(source, moneyType)
-    if not IsDuplicityVersion() then return 0 end
+    if not IsDuplicityVersion() then
+        return 0
+    end
 
     local xPlayer = getESX().GetPlayerFromId(source)
-    if not xPlayer then return 0 end
+    if not xPlayer then
+        return 0
+    end
 
     moneyType = moneyType or 'cash'
 
@@ -66,10 +74,14 @@ end
 ---@param source number
 ---@return HelixJob?
 function ESX.GetPlayerJob(source)
-    if not IsDuplicityVersion() then return nil end
+    if not IsDuplicityVersion() then
+        return nil
+    end
 
     local xPlayer = getESX().GetPlayerFromId(source)
-    if not xPlayer then return nil end
+    if not xPlayer then
+        return nil
+    end
 
     local job = xPlayer.getJob()
     return {
@@ -84,10 +96,14 @@ end
 ---@param source number
 ---@return string?
 function ESX.GetPlayerIdentifier(source)
-    if not IsDuplicityVersion() then return nil end
+    if not IsDuplicityVersion() then
+        return nil
+    end
 
     local xPlayer = getESX().GetPlayerFromId(source)
-    if not xPlayer then return nil end
+    if not xPlayer then
+        return nil
+    end
 
     return xPlayer.getIdentifier()
 end
@@ -97,10 +113,14 @@ end
 ---@param moneyType? string
 ---@return boolean
 function ESX.AddMoney(source, amount, moneyType)
-    if not IsDuplicityVersion() then return false end
+    if not IsDuplicityVersion() then
+        return false
+    end
 
     local xPlayer = getESX().GetPlayerFromId(source)
-    if not xPlayer then return false end
+    if not xPlayer then
+        return false
+    end
 
     moneyType = moneyType or 'cash'
 
@@ -120,22 +140,32 @@ end
 ---@param moneyType? string
 ---@return boolean
 function ESX.RemoveMoney(source, amount, moneyType)
-    if not IsDuplicityVersion() then return false end
+    if not IsDuplicityVersion() then
+        return false
+    end
 
     local xPlayer = getESX().GetPlayerFromId(source)
-    if not xPlayer then return false end
+    if not xPlayer then
+        return false
+    end
 
     moneyType = moneyType or 'cash'
 
     if moneyType == 'cash' then
-        if xPlayer.getMoney() < amount then return false end
+        if xPlayer.getMoney() < amount then
+            return false
+        end
         xPlayer.removeMoney(amount, 'helix_lib')
     elseif moneyType == 'bank' then
-        if xPlayer.getAccount('bank').money < amount then return false end
+        if xPlayer.getAccount('bank').money < amount then
+            return false
+        end
         xPlayer.removeAccountMoney('bank', amount, 'helix_lib')
     else
         local account = xPlayer.getAccount(moneyType)
-        if not account or account.money < amount then return false end
+        if not account or account.money < amount then
+            return false
+        end
         xPlayer.removeAccountMoney(moneyType, amount, 'helix_lib')
     end
 
@@ -147,21 +177,29 @@ end
 ---@param count? number
 ---@return boolean
 function ESX.HasItem(source, item, count)
-    if not IsDuplicityVersion() then return false end
+    if not IsDuplicityVersion() then
+        return false
+    end
 
     count = count or 1
 
     if GetResourceState('ox_inventory') == 'started' then
         local itemData = exports.ox_inventory:GetItem(source, item, nil, false)
-        if not itemData then return false end
+        if not itemData then
+            return false
+        end
         return (itemData.count or 0) >= count
     end
 
     local xPlayer = getESX().GetPlayerFromId(source)
-    if not xPlayer then return false end
+    if not xPlayer then
+        return false
+    end
 
     local itemData = xPlayer.getInventoryItem(item)
-    if not itemData then return false end
+    if not itemData then
+        return false
+    end
     return (itemData.count or 0) >= count
 end
 

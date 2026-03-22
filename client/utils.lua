@@ -57,7 +57,9 @@ end
 ---@param timeout? number Timeout in ms (default: 5000)
 ---@return boolean loaded
 function Utils.loadAnimDict(dict, timeout)
-    if HasAnimDictLoaded(dict) then return true end
+    if HasAnimDictLoaded(dict) then
+        return true
+    end
 
     RequestAnimDict(dict)
     timeout = timeout or 5000
@@ -82,7 +84,9 @@ function Utils.loadModel(model, timeout)
         model = joaat(model)
     end
 
-    if HasModelLoaded(model) then return true end
+    if HasModelLoaded(model) then
+        return true
+    end
 
     RequestModel(model)
     timeout = timeout or 5000
@@ -103,7 +107,9 @@ end
 ---@param timeout? number Timeout in ms (default: 5000)
 ---@return boolean loaded
 function Utils.loadTextureDict(dict, timeout)
-    if HasStreamedTextureDictLoaded(dict) then return true end
+    if HasStreamedTextureDictLoaded(dict) then
+        return true
+    end
 
     RequestStreamedTextureDict(dict, true)
     timeout = timeout or 5000

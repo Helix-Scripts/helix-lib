@@ -65,7 +65,9 @@ end
 ---@return string?
 function Utils.jsonEncode(tbl)
     local ok, result = pcall(json.encode, tbl)
-    if ok then return result end
+    if ok then
+        return result
+    end
     return nil
 end
 
@@ -73,9 +75,13 @@ end
 ---@param str string
 ---@return table?
 function Utils.jsonDecode(str)
-    if not str or str == '' then return nil end
+    if not str or str == '' then
+        return nil
+    end
     local ok, result = pcall(json.decode, str)
-    if ok then return result end
+    if ok then
+        return result
+    end
     return nil
 end
 
