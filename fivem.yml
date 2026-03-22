@@ -2,6 +2,40 @@
 base: lua51
 name: fivem
 globals:
+  # fxmanifest globals
+  fx_version:
+    any: true
+  game:
+    any: true
+  name:
+    any: true
+  author:
+    any: true
+  description:
+    any: true
+  version:
+    any: true
+  url:
+    any: true
+  lua54:
+    any: true
+  shared_scripts:
+    any: true
+  client_scripts:
+    any: true
+  server_scripts:
+    any: true
+  ui_page:
+    any: true
+  files:
+    any: true
+  server_exports:
+    any: true
+  dependencies:
+    any: true
+  provides:
+    any: true
+
   # Core CFX globals
   Citizen:
     any: true
@@ -126,4 +160,30 @@ globals:
   SetTextJustification:
     any: true
   SetTextWrap:
+    any: true
+  SetTextOutline:
+    any: true
+  HasAnimDictLoaded:
+    any: true
+  RequestAnimDict:
+    any: true
+  TaskPlayAnim:
+    any: true
+  RemoveAnimDict:
+    any: true
+  IsEntityDead:
+    any: true
+  GetEntityModel:
+    any: true
+  GetEntityHeading:
+    any: true
+  SetEntityCoords:
+    any: true
+  SetEntityHeading:
+    any: true
+  DoesEntityExist:
+    any: true
+  NetworkGetEntityOwner:
+    any: true
+  GetDistanceBetweenCoords:
     any: true
