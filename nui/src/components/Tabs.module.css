@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabList {
+  display: flex;
+  border-bottom: 1px solid var(--helix-border);
+  gap: 0;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--helix-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  margin-bottom: -1px;
+}
+
+.tab:hover {
+  color: var(--helix-text-secondary);
+}
+
+.tabActive {
+  color: var(--helix-accent);
+  border-bottom-color: var(--helix-accent);
+}
+
+.panel {
+  padding: 0.75rem 0;
+}

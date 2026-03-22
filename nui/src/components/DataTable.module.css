@@ -1,0 +1,75 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: auto;
+}
+
+.filterInput {
+  width: 100%;
+  max-width: 280px;
+  padding: 0.375rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--helix-text-primary);
+  background-color: var(--helix-bg-primary);
+  border: 1px solid var(--helix-border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.filterInput:focus {
+  border-color: var(--helix-border-focus);
+}
+
+.filterInput::placeholder {
+  color: var(--helix-text-muted);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.th {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--helix-text-secondary);
+  background-color: var(--helix-bg-secondary);
+  border-bottom: 1px solid var(--helix-border);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.sortable:hover {
+  color: var(--helix-text-primary);
+}
+
+.sortIcon {
+  display: inline-flex;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+
+.td {
+  padding: 0.5rem 0.75rem;
+  color: var(--helix-text-primary);
+  border-bottom: 1px solid var(--helix-border);
+}
+
+.tr:hover .td {
+  background-color: var(--helix-bg-hover);
+}
+
+.empty {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--helix-text-muted);
+}

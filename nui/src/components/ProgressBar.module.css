@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Linear */
+.track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--helix-bg-tertiary);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background-color: var(--helix-accent);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--helix-text-secondary);
+  text-align: right;
+}
+
+/* Circular */
+.circular {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circularTrack {
+  stroke: var(--helix-bg-tertiary);
+}
+
+.circularFill {
+  stroke: var(--helix-accent);
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.circularLabel {
+  position: absolute;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--helix-text-primary);
+}
