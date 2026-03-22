@@ -187,3 +187,23 @@ globals:
     any: true
   GetDistanceBetweenCoords:
     any: true
+  GetStreetNameAtCoord:
+    any: true
+  GetStreetNameFromHashKey:
+    any: true
+  GetVehiclePedIsIn:
+    any: true
+  HasModelLoaded:
+    any: true
+  HasStreamedTextureDictLoaded:
+    any: true
+  IsPedInAnyVehicle:
+    any: true
+  RequestModel:
+    any: true
+  RequestStreamedTextureDict:
+    any: true
+  SetModelAsNoLongerNeeded:
+    any: true
+  SetStreamedTextureDictAsNoLongerNeeded:
+    any: true
