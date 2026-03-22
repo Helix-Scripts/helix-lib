@@ -2,7 +2,7 @@
  * Returns true when running outside FiveM (e.g. in a regular browser for dev).
  */
 export function isEnvBrowser(): boolean {
-  return !(window as Record<string, unknown>).invokeNative;
+  return !(window as unknown as Record<string, unknown>).invokeNative;
 }
 
 /**
@@ -10,8 +10,9 @@ export function isEnvBrowser(): boolean {
  */
 function getResourceName(): string {
   if (isEnvBrowser()) return 'helix_lib';
-  return (window as Record<string, unknown>).GetParentResourceName
-    ? ((window as Record<string, (...args: unknown[]) => string>).GetParentResourceName() as string)
+  const win = window as unknown as Record<string, unknown>;
+  return typeof win.GetParentResourceName === 'function'
+    ? (win.GetParentResourceName as () => string)()
     : 'helix_lib';
 }
 
