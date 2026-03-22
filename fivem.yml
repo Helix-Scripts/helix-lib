@@ -2,125 +2,128 @@
 base: lua51
 name: fivem
 globals:
-  GetCurrentResourceName:
-    args: []
-  GetResourceState:
-    args:
-      - type: string
-  LoadResourceFile:
-    args:
-      - type: string
-      - type: string
-  RegisterNetEvent:
-    args:
-      - type: string
-  AddEventHandler:
-    args:
-      - type: string
-      - type: function
-  TriggerEvent:
-    args:
-      - type: string
-      - type: "..."
-  TriggerServerEvent:
-    args:
-      - type: string
-      - type: "..."
-  TriggerClientEvent:
-    args:
-      - type: string
-      - type: number
-      - type: "..."
-  RegisterServerEvent:
-    args:
-      - type: string
-  RegisterCommand:
-    args:
-      - type: string
-      - type: function
-      - type: bool
-  RegisterNUICallback:
-    args:
-      - type: string
-      - type: function
-  SendNUIMessage:
-    args:
-      - type: table
-  SetNuiFocus:
-    args:
-      - type: bool
-      - type: bool
-  exports:
-    property: read-only
+  # Core CFX globals
   Citizen:
-    property: read-only
-  CreateThread:
-    args:
-      - type: function
-  Wait:
-    args:
-      - type: number
-  PlayerPedId:
-    args: []
-  PlayerId:
-    args: []
-  GetPlayerPed:
-    args:
-      - type: number
-  GetPlayerServerId:
-    args:
-      - type: number
-  GetEntityCoords:
-    args:
-      - type: number
-  GetPlayers:
-    args: []
-  IsDuplicityVersion:
-    args: []
-  PerformHttpRequest:
-    args:
-      - type: string
-      - type: function
-      - type: string
-  GetPlayerIdentifiers:
-    args:
-      - type: number
-  IsPlayerAceAllowed:
-    args:
-      - type: number
-      - type: string
-  json:
-    property: read-only
-  promise:
-    property: read-only
-  joaat:
-    args:
-      - type: string
-  vec3:
-    args:
-      - type: number
-      - type: number
-      - type: number
-  vec4:
-    args:
-      - type: number
-      - type: number
-      - type: number
-      - type: number
-  vector3:
-    args:
-      - type: number
-      - type: number
-      - type: number
-  vector4:
-    args:
-      - type: number
-      - type: number
-      - type: number
-      - type: number
+    any: true
+  exports:
+    any: true
   source:
-    property: read-only
+    any: true
+  json:
+    any: true
+  promise:
+    any: true
   lib:
-    property: read-only
+    any: true
+
+  # Event system
+  RegisterNetEvent:
+    any: true
+  AddEventHandler:
+    any: true
+  TriggerEvent:
+    any: true
+  TriggerServerEvent:
+    any: true
+  TriggerClientEvent:
+    any: true
+  RegisterServerEvent:
+    any: true
+
+  # Resource functions
+  GetCurrentResourceName:
+    any: true
+  GetResourceState:
+    any: true
+  LoadResourceFile:
+    any: true
+  SaveResourceFile:
+    any: true
+
+  # Thread/timer
+  CreateThread:
+    any: true
+  Wait:
+    any: true
   GetGameTimer:
-    args: []
+    any: true
+
+  # NUI
+  RegisterNUICallback:
+    any: true
+  SendNUIMessage:
+    any: true
+  SetNuiFocus:
+    any: true
+  SetNuiFocusKeepInput:
+    any: true
+
+  # Commands
+  RegisterCommand:
+    any: true
+
+  # Player natives
+  PlayerPedId:
+    any: true
+  PlayerId:
+    any: true
+  GetPlayerPed:
+    any: true
+  GetPlayerServerId:
+    any: true
+  GetEntityCoords:
+    any: true
+  GetPlayers:
+    any: true
+  GetActivePlayers:
+    any: true
+  IsDuplicityVersion:
+    any: true
+
+  # Server natives
+  GetPlayerIdentifiers:
+    any: true
+  IsPlayerAceAllowed:
+    any: true
+  PerformHttpRequest:
+    any: true
+
+  # Math/vector
+  joaat:
+    any: true
+  vec3:
+    any: true
+  vec4:
+    any: true
+  vector3:
+    any: true
+  vector4:
+    any: true
+
+  # Drawing natives (used in utils)
+  World3dToScreen2d:
+    any: true
+  SetTextScale:
+    any: true
+  SetTextFont:
+    any: true
+  SetTextProportional:
+    any: true
+  SetTextColour:
+    any: true
+  SetTextEntry:
+    any: true
+  AddTextComponentString:
+    any: true
+  DrawText:
+    any: true
+  SetTextCentre:
+    any: true
+  BeginTextCommandDisplayText:
+    any: true
+  EndTextCommandDisplayText:
+    any: true
+  SetTextJustification:
+    any: true
+  SetTextWrap:
+    any: true
