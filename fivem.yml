@@ -1,0 +1,126 @@
+---
+base: lua51
+name: fivem
+globals:
+  GetCurrentResourceName:
+    args: []
+  GetResourceState:
+    args:
+      - type: string
+  LoadResourceFile:
+    args:
+      - type: string
+      - type: string
+  RegisterNetEvent:
+    args:
+      - type: string
+  AddEventHandler:
+    args:
+      - type: string
+      - type: function
+  TriggerEvent:
+    args:
+      - type: string
+      - type: "..."
+  TriggerServerEvent:
+    args:
+      - type: string
+      - type: "..."
+  TriggerClientEvent:
+    args:
+      - type: string
+      - type: number
+      - type: "..."
+  RegisterServerEvent:
+    args:
+      - type: string
+  RegisterCommand:
+    args:
+      - type: string
+      - type: function
+      - type: bool
+  RegisterNUICallback:
+    args:
+      - type: string
+      - type: function
+  SendNUIMessage:
+    args:
+      - type: table
+  SetNuiFocus:
+    args:
+      - type: bool
+      - type: bool
+  exports:
+    property: read-only
+  Citizen:
+    property: read-only
+  CreateThread:
+    args:
+      - type: function
+  Wait:
+    args:
+      - type: number
+  PlayerPedId:
+    args: []
+  PlayerId:
+    args: []
+  GetPlayerPed:
+    args:
+      - type: number
+  GetPlayerServerId:
+    args:
+      - type: number
+  GetEntityCoords:
+    args:
+      - type: number
+  GetPlayers:
+    args: []
+  IsDuplicityVersion:
+    args: []
+  PerformHttpRequest:
+    args:
+      - type: string
+      - type: function
+      - type: string
+  GetPlayerIdentifiers:
+    args:
+      - type: number
+  IsPlayerAceAllowed:
+    args:
+      - type: number
+      - type: string
+  json:
+    property: read-only
+  promise:
+    property: read-only
+  joaat:
+    args:
+      - type: string
+  vec3:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  vec4:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  vector3:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  vector4:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  source:
+    property: read-only
+  lib:
+    property: read-only
+  GetGameTimer:
+    args: []
