@@ -7,9 +7,9 @@
   --helix-bg-hover: #243352;
 
   /* Accent */
-  --helix-accent: #0f7fff;
-  --helix-accent-hover: #3399ff;
-  --helix-accent-muted: #0f7fff22;
+  --helix-accent: #7c3aed;
+  --helix-accent-hover: #8b5cf6;
+  --helix-accent-muted: #7c3aed22;
 
   /* Warm */
   --helix-warm: #ff9f1c;
@@ -25,10 +25,10 @@
   --helix-success: #00c853;
   --helix-warning: #ffd600;
   --helix-error: #ff1744;
-  --helix-info: #0f7fff;
+  --helix-info: #7c3aed;
 
   /* Border */
   --helix-border: #2a2a4a;
   --helix-border-hover: #3a3a5a;
-  --helix-border-focus: #0f7fff;
+  --helix-border-focus: #7c3aed;
 }
