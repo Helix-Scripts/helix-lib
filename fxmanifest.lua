@@ -40,6 +40,9 @@ files({
     'html/**/*',
     'locales/*.lua',
     'config.lua',
+    'shared/bridge/qbox.lua',
+    'shared/bridge/qbcore.lua',
+    'shared/bridge/esx.lua',
 })
 
 -- Exports
