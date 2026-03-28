@@ -9,7 +9,13 @@ url('https://github.com/Helix-Scripts/helix-lib')
 
 lua54('yes')
 
--- Client entry points (require shared modules internally)
+-- Module loader — MUST run first on both sides. Sets up require() override
+-- so shared.* modules resolve via LoadResourceFile on both client and server.
+shared_scripts({
+    'shared/init.lua',
+})
+
+-- Client entry points
 client_scripts({
     'client/main.lua',
     'client/callbacks.lua',
@@ -17,7 +23,7 @@ client_scripts({
     'client/ui.lua',
 })
 
--- Server entry points (require shared modules internally)
+-- Server entry points
 server_scripts({
     'server/main.lua',
     'server/callbacks.lua',
@@ -28,7 +34,9 @@ server_scripts({
 -- NUI
 ui_page('html/index.html')
 
--- Shared modules available via require(), plus NUI and locale assets
+-- Shared modules (loaded on-demand via require() through the init.lua loader)
+-- files({}) is needed for client-side LoadResourceFile access.
+-- Server-side LoadResourceFile reads the filesystem directly.
 files({
     'shared/constants.lua',
     'shared/config.lua',
