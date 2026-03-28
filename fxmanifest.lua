@@ -9,15 +9,7 @@ url('https://github.com/Helix-Scripts/helix-lib')
 
 lua54('yes')
 
--- Shared (loaded first)
-shared_scripts({
-    'shared/constants.lua',
-    'shared/config.lua',
-    'shared/locale.lua',
-    'shared/bridge/init.lua',
-})
-
--- Client
+-- Client entry points (require shared modules internally)
 client_scripts({
     'client/main.lua',
     'client/callbacks.lua',
@@ -25,7 +17,7 @@ client_scripts({
     'client/ui.lua',
 })
 
--- Server
+-- Server entry points (require shared modules internally)
 server_scripts({
     'server/main.lua',
     'server/callbacks.lua',
@@ -36,13 +28,18 @@ server_scripts({
 -- NUI
 ui_page('html/index.html')
 
+-- Shared modules available via require(), plus NUI and locale assets
 files({
-    'html/**/*',
-    'locales/*.lua',
-    'config.lua',
+    'shared/constants.lua',
+    'shared/config.lua',
+    'shared/locale.lua',
+    'shared/bridge/init.lua',
     'shared/bridge/qbox.lua',
     'shared/bridge/qbcore.lua',
     'shared/bridge/esx.lua',
+    'html/**/*',
+    'locales/*.lua',
+    'config.lua',
 })
 
 -- Exports
