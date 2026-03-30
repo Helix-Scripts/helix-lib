@@ -3,41 +3,31 @@
 local S = TestRunner.suite('Callbacks (Client)')
 local A = TestRunner.assert
 
-TestRunner.test(S, 'Callback module is accessible via export', function()
-    local cb = exports.helix_lib:callback()
-    A.notNil(cb, 'Callback export should not be nil')
+TestRunner.test(S, 'callback_trigger export is accessible', function()
+    A.isCallable(exports.helix_lib.callback_trigger, 'callback_trigger should be callable')
 end)
 
-TestRunner.test(S, 'Callback.trigger is a function', function()
-    local cb = exports.helix_lib:callback()
-    A.isType(cb.trigger, 'function', 'Callback.trigger should be a function')
+TestRunner.test(S, 'callback_await export is accessible', function()
+    A.isCallable(exports.helix_lib.callback_await, 'callback_await should be callable')
 end)
 
-TestRunner.test(S, 'Callback.await is a function', function()
-    local cb = exports.helix_lib:callback()
-    A.isType(cb.await, 'function', 'Callback.await should be a function')
-end)
-
-TestRunner.test(S, 'Callback.await() echo round-trip', function()
-    local cb = exports.helix_lib:callback()
-    local result = cb.await('helix_lib_tests:echo', 'ping')
+TestRunner.test(S, 'callback_await() echo round-trip', function()
+    local result = exports.helix_lib:callback_await('helix_lib_tests:echo', 'ping')
     A.notNil(result, 'Echo callback should return a result')
     A.isType(result, 'table', 'Echo result should be a table')
     A.equals('ping', result.echoed, 'Echoed value should match')
 end)
 
-TestRunner.test(S, 'Callback.await() add round-trip', function()
-    local cb = exports.helix_lib:callback()
-    local result = cb.await('helix_lib_tests:add', 3, 7)
+TestRunner.test(S, 'callback_await() add round-trip', function()
+    local result = exports.helix_lib:callback_await('helix_lib_tests:add', 3, 7)
     A.equals(10, result, 'Add callback should return 10')
 end)
 
-TestRunner.test(S, 'Callback.trigger() async works', function()
-    local cb = exports.helix_lib:callback()
+TestRunner.test(S, 'callback_trigger() async works', function()
     local done = false
     local echoResult = nil
 
-    cb.trigger('helix_lib_tests:echo', function(result)
+    exports.helix_lib:callback_trigger('helix_lib_tests:echo', function(result)
         echoResult = result
         done = true
     end, 'async_test')

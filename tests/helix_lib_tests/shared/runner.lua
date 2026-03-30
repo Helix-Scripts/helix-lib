@@ -87,6 +87,16 @@ function Assert.tableHasKey(tbl, key, msg)
     end
 end
 
+function Assert.isCallable(value, msg)
+    local t = type(value)
+    if t == 'function' then return end
+    if t == 'table' then
+        local mt = getmetatable(value)
+        if mt and type(mt.__call) == 'function' then return end
+    end
+    error(msg or ('Expected callable, got %s'):format(t), 2)
+end
+
 function Assert.noError(fn, msg)
     local ok, err = pcall(fn)
     if not ok then
