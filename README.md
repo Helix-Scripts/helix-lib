@@ -38,28 +38,40 @@ npm run build   # Build to ../html/ for production
 ### Exports
 
 ```lua
--- Get the framework bridge
-local Bridge = exports.helix_lib:bridge()
+-- Bridge — each function is a flat export (no table proxy issues)
+local fw = exports.helix_lib:bridge_framework()       -- 'qbox', 'qbcore', 'esx', or 'standalone'
+local isQB = exports.helix_lib:bridge_is('qbcore')    -- boolean check
 
 -- Get a player (server-side)
 local player = exports.helix_lib:getPlayer(source)
+local player2 = exports.helix_lib:bridge_GetPlayer(source) -- equivalent
 
 -- Send a notification
 exports.helix_lib:notify('Hello world!', 'success')
+exports.helix_lib:bridge_Notify(source, 'Server-side notification', 'info', 5000)
 
 -- Use the config system
 local Config = exports.helix_lib:config()
 local cfg = Config.get('helix_lib')
 
--- Use translations
-local Locale = exports.helix_lib:locale()
-print(Locale.t('welcome_message', playerName))
+-- Use translations — flat exports
+local msg = exports.helix_lib:locale_t('welcome_message', playerName)
+exports.helix_lib:locale_set('nl')
+local lang = exports.helix_lib:locale_current()
 
--- Use callbacks
-local Callback = exports.helix_lib:callback()
-Callback.trigger('myCallback', function(result)
-    print(result)
+-- Use callbacks — flat exports
+-- Server: register
+exports.helix_lib:callback_register('myCallback', function(source, data)
+    return { ok = true }
+end)
+
+-- Client: trigger async
+exports.helix_lib:callback_trigger('myCallback', function(result)
+    print(result.ok)
 end, arg1, arg2)
+
+-- Client: trigger sync (blocking)
+local result = exports.helix_lib:callback_await('myCallback', arg1, arg2)
 ```
 
 ### NUI Hooks (React)

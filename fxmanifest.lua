@@ -50,20 +50,60 @@ files({
     'config.lua',
 })
 
--- Exports
+-- Exports — flat per-function to avoid FiveM export proxy stripping table methods
 exports({
-    'bridge',
+    -- Bridge
+    'bridge_framework',
+    'bridge_getFramework',
+    'bridge_is',
+    'bridge_GetPlayerMoney',
+    'bridge_GetPlayerJob',
+    'bridge_GetPlayerIdentifier',
+    'bridge_AddMoney',
+    'bridge_RemoveMoney',
+    'bridge_HasItem',
+    'bridge_Notify',
+    -- Config
     'config',
-    'locale',
-    'callback',
+    -- Locale
+    'locale_t',
+    'locale_has',
+    'locale_current',
+    'locale_set',
+    'locale_load',
+    'locale_loadFile',
+    -- Callbacks (client)
+    'callback_trigger',
+    'callback_await',
+    -- Notify (client convenience)
     'notify',
 })
 
 server_exports({
-    'bridge',
+    -- Bridge
+    'bridge_framework',
+    'bridge_getFramework',
+    'bridge_is',
+    'bridge_GetPlayer',
+    'bridge_GetPlayerMoney',
+    'bridge_GetPlayerJob',
+    'bridge_GetPlayerIdentifier',
+    'bridge_AddMoney',
+    'bridge_RemoveMoney',
+    'bridge_HasItem',
+    'bridge_Notify',
+    -- Config
     'config',
-    'locale',
-    'callback',
+    -- Locale
+    'locale_t',
+    'locale_has',
+    'locale_current',
+    'locale_set',
+    'locale_load',
+    'locale_loadFile',
+    -- Callbacks (server)
+    'callback_register',
+    -- Player convenience
     'getPlayer',
     'getPlayers',
 })

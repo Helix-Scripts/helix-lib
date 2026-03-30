@@ -15,13 +15,10 @@ end)
 -- Register echo callback for client-side callback tests
 Citizen.CreateThread(function()
     Citizen.Wait(1000)
-    local cb = exports.helix_lib:callback()
-    if cb and cb.register then
-        cb.register('helix_lib_tests:echo', function(source, data)
-            return { echoed = data, source = source }
-        end)
-        cb.register('helix_lib_tests:add', function(source, a, b)
-            return a + b
-        end)
-    end
+    exports.helix_lib:callback_register('helix_lib_tests:echo', function(source, data)
+        return { echoed = data, source = source }
+    end)
+    exports.helix_lib:callback_register('helix_lib_tests:add', function(source, a, b)
+        return a + b
+    end)
 end)

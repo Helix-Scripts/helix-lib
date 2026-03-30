@@ -44,9 +44,13 @@ if not useOxLib then
     end)
 end
 
---- Export
-exports('callback', function()
-    return Callback
+--- Exports — flat functions to survive FiveM export proxy
+
+--- Register a server callback
+---@param name string Callback name
+---@param cb fun(source: number, ...): any
+exports('callback_register', function(...)
+    return Callback.register(...)
 end)
 
 return Callback

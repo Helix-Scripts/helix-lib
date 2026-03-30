@@ -71,9 +71,22 @@ else
     end)
 end
 
---- Export
-exports('callback', function()
-    return Callback
+--- Exports — flat functions to survive FiveM export proxy
+
+--- Trigger an async callback to the server
+---@param name string Callback name
+---@param cb fun(result: any)
+---@param ... any Arguments to pass to server
+exports('callback_trigger', function(...)
+    return Callback.trigger(...)
+end)
+
+--- Trigger a synchronous (blocking) callback to the server
+---@param name string Callback name
+---@param ... any Arguments to pass to server
+---@return any result
+exports('callback_await', function(...)
+    return Callback.await(...)
 end)
 
 return Callback
