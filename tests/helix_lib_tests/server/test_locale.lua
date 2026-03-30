@@ -1,0 +1,83 @@
+--- Server-side Locale module tests
+
+local S = TestRunner.suite('Locale (Server)')
+local A = TestRunner.assert
+
+TestRunner.test(S, 'Locale module is accessible via export', function()
+    local loc = exports.helix_lib:locale()
+    A.notNil(loc, 'Locale export should not be nil')
+    A.isType(loc.t, 'function', 'Locale.t should be a function')
+    A.isType(loc.load, 'function', 'Locale.load should be a function')
+    A.isType(loc.set, 'function', 'Locale.set should be a function')
+end)
+
+TestRunner.test(S, 'Locale.loadFile() loads English translations', function()
+    local loc = exports.helix_lib:locale()
+    local ok = loc.loadFile('en', GetCurrentResourceName())
+    A.isTrue(ok, 'loadFile should return true for en locale')
+end)
+
+TestRunner.test(S, 'Locale.loadFile() loads Dutch translations', function()
+    local loc = exports.helix_lib:locale()
+    local ok = loc.loadFile('nl', GetCurrentResourceName())
+    A.isTrue(ok, 'loadFile should return true for nl locale')
+end)
+
+TestRunner.test(S, 'Locale.set() + current() work correctly', function()
+    local loc = exports.helix_lib:locale()
+    loc.set('en')
+    A.equals('en', loc.current(), 'current() should return en')
+    loc.set('nl')
+    A.equals('nl', loc.current(), 'current() should return nl')
+end)
+
+TestRunner.test(S, 'Locale.t() translates simple keys', function()
+    local loc = exports.helix_lib:locale()
+    loc.loadFile('en', GetCurrentResourceName())
+    loc.set('en')
+    A.equals('This is a test.', loc.t('test_simple'), 'Simple translation mismatch')
+end)
+
+TestRunner.test(S, 'Locale.t() handles string.format arguments', function()
+    local loc = exports.helix_lib:locale()
+    loc.loadFile('en', GetCurrentResourceName())
+    loc.set('en')
+    A.equals('Hello, World!', loc.t('test_greeting', 'World'), 'Formatted translation mismatch')
+end)
+
+TestRunner.test(S, 'Locale.t() handles numeric format arguments', function()
+    local loc = exports.helix_lib:locale()
+    loc.set('en')
+    A.equals('You have 5 items.', loc.t('test_number', 5), 'Numeric format mismatch')
+end)
+
+TestRunner.test(S, 'Locale.t() handles multiple format arguments', function()
+    local loc = exports.helix_lib:locale()
+    loc.set('en')
+    A.equals('Alice has 10 coins.', loc.t('test_multi', 'Alice', 10), 'Multi-arg format mismatch')
+end)
+
+TestRunner.test(S, 'Locale.t() falls back to English for missing keys', function()
+    local loc = exports.helix_lib:locale()
+    loc.loadFile('en', GetCurrentResourceName())
+    loc.loadFile('nl', GetCurrentResourceName())
+    loc.set('nl')
+    -- nl.lua intentionally omits test_number, should fall back to English
+    local result = loc.t('test_number', 7)
+    A.equals('You have 7 items.', result, 'Should fall back to English for missing nl key')
+end)
+
+TestRunner.test(S, 'Locale.t() translates Dutch when key exists', function()
+    local loc = exports.helix_lib:locale()
+    loc.set('nl')
+    A.equals('Dit is een test.', loc.t('test_simple'), 'Dutch translation mismatch')
+    A.equals('Hallo, Axle!', loc.t('test_greeting', 'Axle'), 'Dutch formatted translation mismatch')
+end)
+
+TestRunner.test(S, 'Locale.has() checks key existence', function()
+    local loc = exports.helix_lib:locale()
+    A.isTrue(loc.has('test_simple', 'en'), 'en should have test_simple')
+    A.isTrue(loc.has('test_simple', 'nl'), 'nl should have test_simple')
+    A.isFalse(loc.has('test_number', 'nl'), 'nl should NOT have test_number')
+    A.isTrue(loc.has('test_number', 'en'), 'en should have test_number')
+end)

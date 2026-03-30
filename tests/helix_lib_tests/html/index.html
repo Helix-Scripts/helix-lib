@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>helix_lib_tests</title>
+    <style>
+        body { margin: 0; background: transparent; }
+    </style>
+</head>
+<body>
+    <!-- Minimal NUI page required by fxmanifest ui_page directive -->
+    <script>
+        window.addEventListener('message', function(event) {
+            // Echo back any test messages
+            if (event.data.action === 'test_echo') {
+                fetch('https://helix_lib_tests/test_echo', {
+                    method: 'POST',
+                    body: JSON.stringify(event.data)
+                });
+            }
+        });
+    </script>
+</body>
+</html>
