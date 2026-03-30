@@ -7,8 +7,8 @@ local Callback = {}
 
 local registeredCallbacks = {}
 
---- Check if ox_lib callbacks are available
-local useOxLib = GetResourceState('ox_lib') == 'started'
+--- Check if ox_lib callbacks are actually available (global `lib` may not exist even if resource is started)
+local useOxLib = type(lib) == 'table' and type(lib.callback) == 'table'
 
 --- Register a server callback
 ---@param name string Callback name

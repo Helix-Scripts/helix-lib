@@ -10,8 +10,8 @@ local Callback = {}
 local pendingCallbacks = {}
 local callbackId = 0
 
---- Check if ox_lib callbacks are available
-local useOxLib = GetResourceState('ox_lib') == 'started'
+--- Check if ox_lib callbacks are actually available (global `lib` may not exist even if resource is started)
+local useOxLib = type(lib) == 'table' and type(lib.callback) == 'table'
 
 if useOxLib then
     -- If ox_lib is present, wrap its callback system for API consistency

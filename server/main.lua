@@ -18,7 +18,19 @@ Locale.set(localeLang)
 
 ---@return HelixBridge
 exports('bridge', function()
-    return Bridge
+    return {
+        framework = Bridge.framework,
+        getFramework = function(...) return Bridge.getFramework(...) end,
+        is = function(...) return Bridge.is(...) end,
+        GetPlayer = function(...) return Bridge.GetPlayer(...) end,
+        GetPlayerMoney = function(...) return Bridge.GetPlayerMoney(...) end,
+        GetPlayerJob = function(...) return Bridge.GetPlayerJob(...) end,
+        GetPlayerIdentifier = function(...) return Bridge.GetPlayerIdentifier(...) end,
+        AddMoney = function(...) return Bridge.AddMoney(...) end,
+        RemoveMoney = function(...) return Bridge.RemoveMoney(...) end,
+        HasItem = function(...) return Bridge.HasItem(...) end,
+        Notify = function(...) return Bridge.Notify(...) end,
+    }
 end)
 
 ---@return HelixConfig
@@ -28,7 +40,14 @@ end)
 
 ---@return HelixLocale
 exports('locale', function()
-    return Locale
+    return {
+        t = function(...) return Locale.t(...) end,
+        has = function(...) return Locale.has(...) end,
+        current = function(...) return Locale.current(...) end,
+        set = function(...) return Locale.set(...) end,
+        load = function(...) return Locale.load(...) end,
+        loadFile = function(...) return Locale.loadFile(...) end,
+    }
 end)
 
 --- Get player (convenience export wrapping bridge)
