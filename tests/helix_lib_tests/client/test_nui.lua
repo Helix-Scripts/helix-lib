@@ -6,7 +6,7 @@ local S = TestRunner.suite('NUI / UI (Client)')
 local A = TestRunner.assert
 
 TestRunner.test(S, 'notify export is a function', function()
-    local notify = exports.helix_lib:notify
+    local notify = exports.helix_lib.notify
     -- notify is exposed as a direct export function
     A.isType(notify, 'function', 'notify export should be a function')
 end)
