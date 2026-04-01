@@ -178,6 +178,31 @@ exports('getPlayers', function()
     return players
 end)
 
+-- ── Config Hot-Reload ───────────────────────────────────────────────────────
+
+--- Console command to trigger config hot-reload for any helix resource
+--- Usage: helix_reload_config <resource>
+RegisterCommand('helix_reload_config', function(source, args)
+    -- Console-only (source 0)
+    if source ~= 0 then return end
+
+    local resource = args[1]
+    if not resource then
+        print('^3[helix_lib] Usage: helix_reload_config <resource>^0')
+        return
+    end
+
+    local ok, err = pcall(function()
+        Config.reload(resource)
+    end)
+
+    if ok then
+        print(('[helix_lib] ^2Config reloaded for %s^0'):format(resource))
+    else
+        print(('[helix_lib] ^1Config reload failed for %s: %s^0'):format(resource, tostring(err)))
+    end
+end, true) -- restricted to console/admin
+
 --- Startup message
 print(([[
 

@@ -46,6 +46,11 @@ else
 
         pendingCallbacks[id] = cb
         TriggerServerEvent('helix_lib:callback:request', name, id, ...)
+
+        -- Clean up if server never responds (30s timeout)
+        SetTimeout(30000, function()
+            pendingCallbacks[id] = nil
+        end)
     end
 
     ---@param name string Callback name

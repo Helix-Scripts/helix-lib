@@ -52,15 +52,13 @@ files({
 
 -- Exports — flat per-function to avoid FiveM export proxy stripping table methods
 exports({
-    -- Bridge
+    -- Bridge (client-safe subset)
     'bridge_framework',
     'bridge_getFramework',
     'bridge_is',
     'bridge_GetPlayerMoney',
     'bridge_GetPlayerJob',
     'bridge_GetPlayerIdentifier',
-    'bridge_AddMoney',
-    'bridge_RemoveMoney',
     'bridge_HasItem',
     'bridge_Notify',
     -- Config
