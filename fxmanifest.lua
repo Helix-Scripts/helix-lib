@@ -4,7 +4,7 @@ game('gta5')
 name('helix_lib')
 author('Helix Scripts')
 description('Shared utility library — framework bridge, UI components, config system')
-version('0.1.0')
+version('1.0.0')
 url('https://github.com/Helix-Scripts/helix-lib')
 
 lua54('yes')
