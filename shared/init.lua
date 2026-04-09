@@ -42,12 +42,12 @@ local function loadModule(modPath)
     return moduleCache[modPath]
 end
 
--- Override require for shared.* paths, defer everything else to the original
+-- Override require for helix_lib module paths, defer everything else to the original
 local _require = require
 
 ---@diagnostic disable-next-line: lowercase-global
 require = function(modPath)
-    if type(modPath) == 'string' and modPath:find('^shared%.') then
+    if type(modPath) == 'string' and (modPath:find('^shared%.') or modPath:find('^server%.') or modPath:find('^client%.')) then
         return loadModule(modPath)
     end
     return _require(modPath)

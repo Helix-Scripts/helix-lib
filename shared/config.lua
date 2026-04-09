@@ -18,7 +18,8 @@ function Config.load(resourceName, defaults)
         return loadedConfigs[resourceName]
     end
 
-    local fn, err = load(configFile, ('@%s/config.lua'):format(resourceName))
+    -- Sandbox: config files only need to return a table, no globals required
+    local fn, err = load(configFile, ('@%s/config.lua'):format(resourceName), 't', {})
     if not fn then
         Config.log('error', ('Failed to parse config for %s: %s'):format(resourceName, err))
         loadedConfigs[resourceName] = defaults or {}

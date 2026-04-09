@@ -28,7 +28,8 @@ function Locale.loadFile(lang, resourceName)
         return false
     end
 
-    local fn, err = load(file)
+    -- Sandbox: locale files only need to return a table, no globals required
+    local fn, err = load(file, ('@%s/locales/%s.lua'):format(resourceName, lang), 't', {})
     if not fn then
         print(('[helix_lib:locale] ^1Failed to parse locale %s: %s^0'):format(lang, err))
         return false
@@ -44,7 +45,10 @@ function Locale.loadFile(lang, resourceName)
     return true
 end
 
---- Set the active locale
+--- Set the active locale.
+--- NOTE: This is intentionally server-wide (or client-wide). All consumers share a single
+--- active locale. This is acceptable for a shared lib — individual resources that need
+--- per-player locale should manage their own locale state.
 ---@param lang string
 function Locale.set(lang)
     currentLocale = lang

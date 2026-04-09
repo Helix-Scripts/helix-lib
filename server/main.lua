@@ -103,9 +103,25 @@ end)
 
 -- ── Config ───────────────────────────────────────────────────────────────────
 
----@return HelixConfig
-exports('config', function()
-    return Config
+--- Get a config value. Returns the full config table if no key is given.
+--- Scoped to the calling resource by default.
+---@param resource? string Resource name (defaults to invoking resource)
+---@param key? string Specific config key to retrieve
+---@return any
+exports('config', function(resource, key)
+    resource = resource or GetInvokingResource() or Constants.RESOURCE_NAME
+    local cfg = Config.get(resource)
+    if not cfg then return nil end
+    if key then return cfg[key] end
+    return cfg
+end)
+
+--- Register a callback for config changes (debug/dev hot-reload)
+---@param resource? string Resource name (defaults to invoking resource)
+---@param cb fun(newConfig: table)
+exports('config_onChange', function(resource, cb)
+    resource = resource or GetInvokingResource() or Constants.RESOURCE_NAME
+    Config.onReload(resource, cb)
 end)
 
 -- ── Locale ───────────────────────────────────────────────────────────────────
@@ -132,12 +148,6 @@ exports('locale_current', function(...)
     return Locale.current(...)
 end)
 
---- Set the active locale language
----@param lang string
-exports('locale_set', function(...)
-    return Locale.set(...)
-end)
-
 --- Load translations into memory
 ---@param lang string
 ---@param translations table
@@ -162,7 +172,10 @@ exports('getPlayer', function(source)
     return Bridge.GetPlayer(source)
 end)
 
---- Get all online players
+--- Get all online players.
+--- WARNING: This is a snapshot function that calls Bridge.GetPlayer for each
+--- connected player. Do NOT call this per-tick — cache the result if you need
+--- frequent access, or use getPlayer(source) for individual lookups.
 ---@return HelixPlayer[]
 exports('getPlayers', function()
     local players = {}
@@ -202,6 +215,33 @@ RegisterCommand('helix_reload_config', function(source, args)
         print(('[helix_lib] ^1Config reload failed for %s: %s^0'):format(resource, tostring(err)))
     end
 end, true) -- restricted to console/admin
+
+-- ── Server Utilities ────────────────────────────────────────────────────────
+
+local ServerUtils = require('server.utils')
+
+--- Get a player's identifier by type
+---@param source number Player server ID
+---@param idType? string Identifier type (default: 'license')
+---@return string? identifier
+exports('getIdentifier', function(...)
+    return ServerUtils.getIdentifier(...)
+end)
+
+--- Check if a player has an ace permission
+---@param source number
+---@param permission string
+---@return boolean
+exports('hasPermission', function(...)
+    return ServerUtils.hasPermission(...)
+end)
+
+--- Generate a unique ID
+---@param prefix? string
+---@return string
+exports('generateId', function(...)
+    return ServerUtils.generateId(...)
+end)
 
 --- Startup message
 print(([[

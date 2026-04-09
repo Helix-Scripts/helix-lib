@@ -16,6 +16,13 @@ export function useNuiEvent<T = unknown>(action: string, handler: (data: T) => v
 
   useEffect(() => {
     function eventListener(event: MessageEvent) {
+      // Origin check: in FiveM NUI, game-client messages come from the same window context.
+      // Reject messages from cross-origin iframes or external sources.
+      if (event.source !== window) return;
+
+      // Guard: only process messages with the expected shape (action string + data)
+      if (!event.data || typeof event.data.action !== 'string') return;
+
       const { action: eventAction, data } = event.data;
       if (eventAction === action) {
         savedHandler.current(data as T);

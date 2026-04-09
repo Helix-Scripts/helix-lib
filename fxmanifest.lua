@@ -19,7 +19,6 @@ shared_scripts({
 client_scripts({
     'client/main.lua',
     'client/callbacks.lua',
-    'client/utils.lua',
     'client/ui.lua',
 })
 
@@ -27,7 +26,6 @@ client_scripts({
 server_scripts({
     'server/main.lua',
     'server/callbacks.lua',
-    'server/utils.lua',
     'server/version.lua',
 })
 
@@ -38,6 +36,7 @@ ui_page('html/index.html')
 -- files({}) is needed for client-side LoadResourceFile access.
 -- Server-side LoadResourceFile reads the filesystem directly.
 files({
+    'client/utils.lua',
     'shared/constants.lua',
     'shared/config.lua',
     'shared/locale.lua',
@@ -63,11 +62,11 @@ exports({
     'bridge_Notify',
     -- Config
     'config',
+    'config_onChange',
     -- Locale
     'locale_t',
     'locale_has',
     'locale_current',
-    'locale_set',
     'locale_load',
     'locale_loadFile',
     -- Callbacks (client)
@@ -75,6 +74,15 @@ exports({
     'callback_await',
     -- Notify (client convenience)
     'notify',
+    -- Client utilities
+    'getClosestPlayer',
+    'drawText3D',
+    'loadAnimDict',
+    'loadModel',
+    'loadTextureDict',
+    'getStreetName',
+    'isInVehicle',
+    'getCurrentVehicle',
 })
 
 server_exports({
@@ -92,11 +100,11 @@ server_exports({
     'bridge_Notify',
     -- Config
     'config',
+    'config_onChange',
     -- Locale
     'locale_t',
     'locale_has',
     'locale_current',
-    'locale_set',
     'locale_load',
     'locale_loadFile',
     -- Callbacks (server)
@@ -104,4 +112,8 @@ server_exports({
     -- Player convenience
     'getPlayer',
     'getPlayers',
+    -- Server utilities
+    'getIdentifier',
+    'hasPermission',
+    'generateId',
 })

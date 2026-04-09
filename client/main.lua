@@ -60,22 +60,6 @@ exports('bridge_GetPlayerIdentifier', function(...)
     return Bridge.GetPlayerIdentifier(...)
 end)
 
---- Add money to player
----@param source number
----@param amount number
----@param moneyType? string
-exports('bridge_AddMoney', function(...)
-    return Bridge.AddMoney(...)
-end)
-
---- Remove money from player
----@param source number
----@param amount number
----@param moneyType? string
-exports('bridge_RemoveMoney', function(...)
-    return Bridge.RemoveMoney(...)
-end)
-
 --- Check if player has item
 ---@param source number
 ---@param item string
@@ -96,11 +80,25 @@ end)
 
 -- ── Config ───────────────────────────────────────────────────────────────────
 
---- Get the config module (returns the table directly — Config has no cross-proxy issue
---- because consumers call config methods inline, not stored)
----@return HelixConfig
-exports('config', function()
-    return Config
+--- Get a config value. Returns the full config table if no key is given.
+--- Scoped to the calling resource by default.
+---@param resource? string Resource name (defaults to invoking resource)
+---@param key? string Specific config key to retrieve
+---@return any
+exports('config', function(resource, key)
+    resource = resource or GetInvokingResource() or Constants.RESOURCE_NAME
+    local cfg = Config.get(resource)
+    if not cfg then return nil end
+    if key then return cfg[key] end
+    return cfg
+end)
+
+--- Register a callback for config changes (debug/dev hot-reload)
+---@param resource? string Resource name (defaults to invoking resource)
+---@param cb fun(newConfig: table)
+exports('config_onChange', function(resource, cb)
+    resource = resource or GetInvokingResource() or Constants.RESOURCE_NAME
+    Config.onReload(resource, cb)
 end)
 
 -- ── Locale ───────────────────────────────────────────────────────────────────
@@ -127,12 +125,6 @@ exports('locale_current', function(...)
     return Locale.current(...)
 end)
 
---- Set the active locale language
----@param lang string
-exports('locale_set', function(...)
-    return Locale.set(...)
-end)
-
 --- Load translations into memory
 ---@param lang string
 ---@param translations table
@@ -156,6 +148,68 @@ end)
 ---@param duration? number
 exports('notify', function(message, type, duration)
     Bridge.Notify(nil, message, type, duration)
+end)
+
+-- ── Client Utilities ────────────────────────────────────────────────────────
+
+local ClientUtils = require('client.utils')
+
+--- Get the closest player within a radius
+---@param radius? number Default: 5.0
+---@return number? serverId, number? distance
+exports('getClosestPlayer', function(...)
+    return ClientUtils.getClosestPlayer(...)
+end)
+
+--- Draw 3D text at a world position
+---@param coords vector3
+---@param text string
+---@param scale? number Default: 0.35
+exports('drawText3D', function(...)
+    return ClientUtils.drawText3D(...)
+end)
+
+--- Request and load an animation dictionary
+---@param dict string
+---@param timeout? number Timeout in ms (default: 5000)
+---@return boolean loaded
+exports('loadAnimDict', function(...)
+    return ClientUtils.loadAnimDict(...)
+end)
+
+--- Request and load a model
+---@param model string|number
+---@param timeout? number Timeout in ms (default: 5000)
+---@return boolean loaded
+exports('loadModel', function(...)
+    return ClientUtils.loadModel(...)
+end)
+
+--- Request and load a texture dictionary
+---@param dict string
+---@param timeout? number Timeout in ms (default: 5000)
+---@return boolean loaded
+exports('loadTextureDict', function(...)
+    return ClientUtils.loadTextureDict(...)
+end)
+
+--- Get the street name at coordinates
+---@param coords vector3
+---@return string streetName, string? crossingName
+exports('getStreetName', function(...)
+    return ClientUtils.getStreetName(...)
+end)
+
+--- Check if the player is in a vehicle
+---@return boolean
+exports('isInVehicle', function(...)
+    return ClientUtils.isInVehicle(...)
+end)
+
+--- Get the vehicle the player is currently in
+---@return number? vehicle
+exports('getCurrentVehicle', function(...)
+    return ClientUtils.getCurrentVehicle(...)
 end)
 
 --- Handle notification event from server

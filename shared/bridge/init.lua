@@ -68,19 +68,24 @@ function Bridge.init()
     detectedFramework = detect()
     Bridge.framework = detectedFramework
 
-    local bridgeModule = nil
+    -- Framework-specific bridge modules contain server-only APIs (GetPlayer,
+    -- AddMoney, etc.). Only load them on the server to avoid shipping
+    -- unnecessary code to the client.
+    if IsDuplicityVersion() then
+        local bridgeModule = nil
 
-    if detectedFramework == Constants.Framework.QBOX then
-        bridgeModule = require('shared.bridge.qbox')
-    elseif detectedFramework == Constants.Framework.QBCORE then
-        bridgeModule = require('shared.bridge.qbcore')
-    elseif detectedFramework == Constants.Framework.ESX then
-        bridgeModule = require('shared.bridge.esx')
-    end
+        if detectedFramework == Constants.Framework.QBOX then
+            bridgeModule = require('shared.bridge.qbox')
+        elseif detectedFramework == Constants.Framework.QBCORE then
+            bridgeModule = require('shared.bridge.qbcore')
+        elseif detectedFramework == Constants.Framework.ESX then
+            bridgeModule = require('shared.bridge.esx')
+        end
 
-    if bridgeModule then
-        for k, v in pairs(bridgeModule) do
-            Bridge[k] = v
+        if bridgeModule then
+            for k, v in pairs(bridgeModule) do
+                Bridge[k] = v
+            end
         end
     end
 
