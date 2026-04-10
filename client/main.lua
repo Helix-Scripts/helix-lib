@@ -88,8 +88,12 @@ end)
 exports('config', function(resource, key)
     resource = resource or GetInvokingResource() or Constants.RESOURCE_NAME
     local cfg = Config.get(resource)
-    if not cfg then return nil end
-    if key then return cfg[key] end
+    if not cfg then
+        return nil
+    end
+    if key then
+        return cfg[key]
+    end
     return cfg
 end)
 

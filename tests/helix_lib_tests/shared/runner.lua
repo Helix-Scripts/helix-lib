@@ -89,10 +89,14 @@ end
 
 function Assert.isCallable(value, msg)
     local t = type(value)
-    if t == 'function' then return end
+    if t == 'function' then
+        return
+    end
     if t == 'table' then
         local mt = getmetatable(value)
-        if mt and type(mt.__call) == 'function' then return end
+        if mt and type(mt.__call) == 'function' then
+            return
+        end
     end
     error(msg or ('Expected callable, got %s'):format(t), 2)
 end
@@ -114,9 +118,13 @@ function TestRunner.runAll(side)
     local totalSkipped = 0
 
     print('')
-    print('^5╔═══════════════════════════════════════════════════════════╗^0')
+    print(
+        '^5╔═══════════════════════════════════════════════════════════╗^0'
+    )
     print('^5║       HELIX_LIB TEST HARNESS — ' .. side .. string.rep(' ', 25 - #side) .. '║^0')
-    print('^5╚═══════════════════════════════════════════════════════════╝^0')
+    print(
+        '^5╚═══════════════════════════════════════════════════════════╝^0'
+    )
     print('')
 
     for _, suite in ipairs(suites) do
@@ -147,12 +155,19 @@ function TestRunner.runAll(side)
     end
 
     -- Summary
-    print('^5═══════════════════════════════════════════════════════════^0')
+    print(
+        '^5═══════════════════════════════════════════════════════════^0'
+    )
     local statusColor = totalFailed > 0 and '^1' or '^2'
-    print(('%s  %d passed, %d failed, %d skipped  (total: %d)^0'):format(
-        statusColor, totalPassed, totalFailed, totalSkipped,
-        totalPassed + totalFailed + totalSkipped
-    ))
+    print(
+        ('%s  %d passed, %d failed, %d skipped  (total: %d)^0'):format(
+            statusColor,
+            totalPassed,
+            totalFailed,
+            totalSkipped,
+            totalPassed + totalFailed + totalSkipped
+        )
+    )
 
     if totalFailed > 0 then
         print('')
@@ -165,7 +180,9 @@ function TestRunner.runAll(side)
         end
     end
 
-    print('^5═══════════════════════════════════════════════════════════^0')
+    print(
+        '^5═══════════════════════════════════════════════════════════^0'
+    )
     print('')
 
     -- Fire event so external tools can capture results

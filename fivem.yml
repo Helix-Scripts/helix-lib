@@ -2,208 +2,259 @@
 base: lua51
 name: fivem
 globals:
+  GetCurrentResourceName:
+    args: []
+  GetResourceState:
+    args:
+      - type: string
+  GetResourceMetadata:
+    args:
+      - type: string
+      - type: string
+      - type: number
+  LoadResourceFile:
+    args:
+      - type: string
+      - type: string
+  RegisterNetEvent:
+    args:
+      - type: string
+  AddEventHandler:
+    args:
+      - type: string
+      - type: function
+  TriggerEvent:
+    args:
+      - type: string
+      - type: "..."
+  TriggerServerEvent:
+    args:
+      - type: string
+      - type: "..."
+  TriggerClientEvent:
+    args:
+      - type: string
+      - type: number
+      - type: "..."
+  RegisterServerEvent:
+    args:
+      - type: string
+  RegisterCommand:
+    args:
+      - type: string
+      - type: function
+      - type: bool
+  RegisterNUICallback:
+    args:
+      - type: string
+      - type: function
+  SendNUIMessage:
+    args:
+      - type: table
+  SetNuiFocus:
+    args:
+      - type: bool
+      - type: bool
+  exports:
+    property: read-only
+  Citizen:
+    property: read-only
+  CreateThread:
+    args:
+      - type: function
+  Wait:
+    args:
+      - type: number
+  SetTimeout:
+    args:
+      - type: number
+      - type: function
+  PlayerPedId:
+    args: []
+  PlayerId:
+    args: []
+  GetPlayerPed:
+    args:
+      - type: number
+  GetPlayerServerId:
+    args:
+      - type: number
+  GetEntityCoords:
+    args:
+      - type: number
+  GetPlayers:
+    args: []
+  IsDuplicityVersion:
+    args: []
+  PerformHttpRequest:
+    args:
+      - type: string
+      - type: function
+      - type: string
+  GetPlayerIdentifiers:
+    args:
+      - type: number
+  IsPlayerAceAllowed:
+    args:
+      - type: number
+      - type: string
+  GetInvokingResource:
+    args: []
+  json:
+    property: read-only
+  promise:
+    property: read-only
+  joaat:
+    args:
+      - type: string
+  vec3:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  vec4:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  vector3:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  vector4:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  source:
+    property: read-only
+  lib:
+    property: read-only
+  GetGameTimer:
+    args: []
+  dependency:
+    args:
+      - type: string
+  TestRunner:
+    property: read-only
+
   # fxmanifest globals
   fx_version:
-    any: true
+    args:
+      - type: string
   game:
-    any: true
+    args:
+      - type: string
   name:
-    any: true
+    args:
+      - type: string
   author:
-    any: true
+    args:
+      - type: string
   description:
-    any: true
+    args:
+      - type: string
   version:
-    any: true
+    args:
+      - type: string
   url:
-    any: true
+    args:
+      - type: string
   lua54:
-    any: true
+    args:
+      - type: string
   shared_scripts:
-    any: true
+    args:
+      - type: table
   client_scripts:
-    any: true
+    args:
+      - type: table
   server_scripts:
-    any: true
+    args:
+      - type: table
   ui_page:
-    any: true
+    args:
+      - type: string
   files:
-    any: true
+    args:
+      - type: table
   server_exports:
-    any: true
-  dependencies:
-    any: true
-  provides:
-    any: true
+    args:
+      - type: table
 
-  # Core CFX globals
-  Citizen:
-    any: true
-  exports:
-    any: true
-  source:
-    any: true
-  json:
-    any: true
-  promise:
-    any: true
-  lib:
-    any: true
-
-  # Event system
-  RegisterNetEvent:
-    any: true
-  AddEventHandler:
-    any: true
-  TriggerEvent:
-    any: true
-  TriggerServerEvent:
-    any: true
-  TriggerClientEvent:
-    any: true
-  RegisterServerEvent:
-    any: true
-
-  # Resource functions
-  GetCurrentResourceName:
-    any: true
-  GetResourceState:
-    any: true
-  LoadResourceFile:
-    any: true
-  SaveResourceFile:
-    any: true
-
-  # Thread/timer
-  CreateThread:
-    any: true
-  Wait:
-    any: true
-  GetGameTimer:
-    any: true
-
-  # NUI
-  RegisterNUICallback:
-    any: true
-  SendNUIMessage:
-    any: true
-  SetNuiFocus:
-    any: true
-  SetNuiFocusKeepInput:
-    any: true
-
-  # Commands
-  RegisterCommand:
-    any: true
-
-  # Player natives
-  PlayerPedId:
-    any: true
-  PlayerId:
-    any: true
-  GetPlayerPed:
-    any: true
-  GetPlayerServerId:
-    any: true
-  GetEntityCoords:
-    any: true
-  GetPlayers:
-    any: true
-  GetActivePlayers:
-    any: true
-  IsDuplicityVersion:
-    any: true
-
-  # Server natives
-  GetPlayerIdentifiers:
-    any: true
-  IsPlayerAceAllowed:
-    any: true
-  PerformHttpRequest:
-    any: true
-
-  # Math/vector
-  joaat:
-    any: true
-  vec3:
-    any: true
-  vec4:
-    any: true
-  vector3:
-    any: true
-  vector4:
-    any: true
-
-  # Drawing natives (used in utils)
-  World3dToScreen2d:
-    any: true
-  SetTextScale:
-    any: true
-  SetTextFont:
-    any: true
-  SetTextProportional:
-    any: true
-  SetTextColour:
-    any: true
-  SetTextEntry:
-    any: true
-  AddTextComponentString:
-    any: true
-  DrawText:
-    any: true
-  SetTextCentre:
-    any: true
-  BeginTextCommandDisplayText:
-    any: true
-  EndTextCommandDisplayText:
-    any: true
-  SetTextJustification:
-    any: true
-  SetTextWrap:
-    any: true
-  SetTextOutline:
-    any: true
-  HasAnimDictLoaded:
-    any: true
-  RequestAnimDict:
-    any: true
-  TaskPlayAnim:
-    any: true
-  RemoveAnimDict:
-    any: true
-  IsEntityDead:
-    any: true
-  GetEntityModel:
-    any: true
-  GetEntityHeading:
-    any: true
-  SetEntityCoords:
-    any: true
-  SetEntityHeading:
-    any: true
-  DoesEntityExist:
-    any: true
-  NetworkGetEntityOwner:
-    any: true
-  GetDistanceBetweenCoords:
-    any: true
-  GetStreetNameAtCoord:
-    any: true
-  GetStreetNameFromHashKey:
-    any: true
-  GetVehiclePedIsIn:
-    any: true
-  HasModelLoaded:
-    any: true
-  HasStreamedTextureDictLoaded:
-    any: true
+  # GTA natives used in client utilities
   IsPedInAnyVehicle:
-    any: true
+    args:
+      - type: number
+      - type: bool
+  GetVehiclePedIsIn:
+    args:
+      - type: number
+      - type: bool
+  HasAnimDictLoaded:
+    args:
+      - type: string
+  RequestAnimDict:
+    args:
+      - type: string
+  HasModelLoaded:
+    args:
+      - type: number
   RequestModel:
-    any: true
+    args:
+      - type: number
+  HasStreamedTextureDictLoaded:
+    args:
+      - type: string
   RequestStreamedTextureDict:
-    any: true
-  SetModelAsNoLongerNeeded:
-    any: true
-  SetStreamedTextureDictAsNoLongerNeeded:
-    any: true
+    args:
+      - type: string
+  GetStreetNameAtCoord:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  GetStreetNameFromHashKey:
+    args:
+      - type: number
+  World3dToScreen2d:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  SetTextFont:
+    args:
+      - type: number
+  SetTextScale:
+    args:
+      - type: number
+      - type: number
+  SetTextColour:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  SetTextOutline:
+    args: []
+  SetTextCentre:
+    args:
+      - type: bool
+  SetTextProportional:
+    args:
+      - type: bool
+  SetTextEntry:
+    args:
+      - type: string
+  AddTextComponentString:
+    args:
+      - type: string
+  DrawText:
+    args:
+      - type: number
+      - type: number
+  GetActivePlayers:
+    args: []

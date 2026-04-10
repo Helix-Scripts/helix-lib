@@ -90,13 +90,27 @@ function Bridge.init()
     end
 
     -- Ensure all API surface methods exist (standalone fallbacks for frameworks without full coverage)
-    Bridge.GetPlayer = Bridge.GetPlayer or function() return nil end
-    Bridge.GetPlayerMoney = Bridge.GetPlayerMoney or function() return 0 end
-    Bridge.GetPlayerJob = Bridge.GetPlayerJob or function() return nil end
-    Bridge.GetPlayerIdentifier = Bridge.GetPlayerIdentifier or function() return nil end
-    Bridge.AddMoney = Bridge.AddMoney or function() return false end
-    Bridge.RemoveMoney = Bridge.RemoveMoney or function() return false end
-    Bridge.HasItem = Bridge.HasItem or function() return false end
+    Bridge.GetPlayer = Bridge.GetPlayer or function()
+        return nil
+    end
+    Bridge.GetPlayerMoney = Bridge.GetPlayerMoney or function()
+        return 0
+    end
+    Bridge.GetPlayerJob = Bridge.GetPlayerJob or function()
+        return nil
+    end
+    Bridge.GetPlayerIdentifier = Bridge.GetPlayerIdentifier or function()
+        return nil
+    end
+    Bridge.AddMoney = Bridge.AddMoney or function()
+        return false
+    end
+    Bridge.RemoveMoney = Bridge.RemoveMoney or function()
+        return false
+    end
+    Bridge.HasItem = Bridge.HasItem or function()
+        return false
+    end
     Bridge.Notify = Bridge.Notify or function() end
 
     print(('[helix_lib] ^2Framework detected: %s^0'):format(detectedFramework))

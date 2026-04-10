@@ -111,8 +111,12 @@ end)
 exports('config', function(resource, key)
     resource = resource or GetInvokingResource() or Constants.RESOURCE_NAME
     local cfg = Config.get(resource)
-    if not cfg then return nil end
-    if key then return cfg[key] end
+    if not cfg then
+        return nil
+    end
+    if key then
+        return cfg[key]
+    end
     return cfg
 end)
 
@@ -197,7 +201,9 @@ end)
 --- Usage: helix_reload_config <resource>
 RegisterCommand('helix_reload_config', function(source, args)
     -- Console-only (source 0)
-    if source ~= 0 then return end
+    if source ~= 0 then
+        return
+    end
 
     local resource = args[1]
     if not resource then

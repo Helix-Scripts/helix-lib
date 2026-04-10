@@ -60,7 +60,11 @@ end)
 TestRunner.test(S, 'locale_t() translates Dutch when key exists', function()
     exports.helix_lib:locale_set('nl')
     A.equals('Dit is een test.', exports.helix_lib:locale_t('test_simple'), 'Dutch translation mismatch')
-    A.equals('Hallo, Axle!', exports.helix_lib:locale_t('test_greeting', 'Axle'), 'Dutch formatted translation mismatch')
+    A.equals(
+        'Hallo, Axle!',
+        exports.helix_lib:locale_t('test_greeting', 'Axle'),
+        'Dutch formatted translation mismatch'
+    )
 end)
 
 TestRunner.test(S, 'locale_has() checks key existence', function()

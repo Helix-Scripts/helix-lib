@@ -7,6 +7,11 @@ globals:
   GetResourceState:
     args:
       - type: string
+  GetResourceMetadata:
+    args:
+      - type: string
+      - type: string
+      - type: number
   LoadResourceFile:
     args:
       - type: string
@@ -60,6 +65,10 @@ globals:
   Wait:
     args:
       - type: number
+  SetTimeout:
+    args:
+      - type: number
+      - type: function
   PlayerPedId:
     args: []
   PlayerId:
@@ -89,6 +98,8 @@ globals:
     args:
       - type: number
       - type: string
+  GetInvokingResource:
+    args: []
   json:
     property: read-only
   promise:
@@ -123,4 +134,127 @@ globals:
   lib:
     property: read-only
   GetGameTimer:
+    args: []
+  dependency:
+    args:
+      - type: string
+  TestRunner:
+    property: read-only
+
+  # fxmanifest globals
+  fx_version:
+    args:
+      - type: string
+  game:
+    args:
+      - type: string
+  name:
+    args:
+      - type: string
+  author:
+    args:
+      - type: string
+  description:
+    args:
+      - type: string
+  version:
+    args:
+      - type: string
+  url:
+    args:
+      - type: string
+  lua54:
+    args:
+      - type: string
+  shared_scripts:
+    args:
+      - type: table
+  client_scripts:
+    args:
+      - type: table
+  server_scripts:
+    args:
+      - type: table
+  ui_page:
+    args:
+      - type: string
+  files:
+    args:
+      - type: table
+  server_exports:
+    args:
+      - type: table
+
+  # GTA natives used in client utilities
+  IsPedInAnyVehicle:
+    args:
+      - type: number
+      - type: bool
+  GetVehiclePedIsIn:
+    args:
+      - type: number
+      - type: bool
+  HasAnimDictLoaded:
+    args:
+      - type: string
+  RequestAnimDict:
+    args:
+      - type: string
+  HasModelLoaded:
+    args:
+      - type: number
+  RequestModel:
+    args:
+      - type: number
+  HasStreamedTextureDictLoaded:
+    args:
+      - type: string
+  RequestStreamedTextureDict:
+    args:
+      - type: string
+  GetStreetNameAtCoord:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  GetStreetNameFromHashKey:
+    args:
+      - type: number
+  World3dToScreen2d:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  SetTextFont:
+    args:
+      - type: number
+  SetTextScale:
+    args:
+      - type: number
+      - type: number
+  SetTextColour:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  SetTextOutline:
+    args: []
+  SetTextCentre:
+    args:
+      - type: bool
+  SetTextProportional:
+    args:
+      - type: bool
+  SetTextEntry:
+    args:
+      - type: string
+  AddTextComponentString:
+    args:
+      - type: string
+  DrawText:
+    args:
+      - type: number
+      - type: number
+  GetActivePlayers:
     args: []

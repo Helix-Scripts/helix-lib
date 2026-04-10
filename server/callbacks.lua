@@ -50,7 +50,12 @@ if not useOxLib then
         -- Rate limiting: reject requests that come too fast from the same source
         local now = GetGameTimer()
         if lastCallTime[source] and (now - lastCallTime[source]) < RATE_LIMIT_MS then
-            print(('[helix_lib] ^3Rate-limited callback request from player %s (callback: %s)^0'):format(tostring(source), name))
+            print(
+                ('[helix_lib] ^3Rate-limited callback request from player %s (callback: %s)^0'):format(
+                    tostring(source),
+                    name
+                )
+            )
             TriggerClientEvent('helix_lib:callback:response', source, id, nil)
             return
         end

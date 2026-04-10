@@ -47,7 +47,10 @@ local _require = require
 
 ---@diagnostic disable-next-line: lowercase-global
 require = function(modPath)
-    if type(modPath) == 'string' and (modPath:find('^shared%.') or modPath:find('^server%.') or modPath:find('^client%.')) then
+    if
+        type(modPath) == 'string'
+        and (modPath:find('^shared%.') or modPath:find('^server%.') or modPath:find('^client%.'))
+    then
         return loadModule(modPath)
     end
     return _require(modPath)
